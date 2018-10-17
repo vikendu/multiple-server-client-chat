@@ -10,6 +10,7 @@ def Main():
 
     sep = ''
     print('Send \"bye\" to exit conversation')
+    print('Server Busy... Waiting for connection...')
     s.send('Default Hello'.encode('ascii'))
     
     while True: 

@@ -3,20 +3,24 @@ import socket
 from _thread import *
 import threading 
   
+count = 1
+
 print_lock = threading.Lock() 
-def threaded(c): 
+def threaded(c):
+    global count 
     data = ''
     buf = b''
     while True: 
         #print('Server: ')
         data = str(c.recv(4096).decode('ascii')) 
-        print('Client :', data)
+        print('Client ',count,':', data)
         if not data: 
-            print('Bye') 
+            print('Bye Client ',count) 
             print_lock.release() 
             break
 
         if data == 'bye':
+            count += 1
             c.close()
             print('Bye bye')
             print_lock.release()
